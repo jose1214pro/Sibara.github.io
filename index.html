@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="SIBARA Cafe De Altura — El lugar perfecto para disfrutar café de calidad en un ambiente cómodo y tranquilo."/>
+  <title>SIBARA Cafe De Altura</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold:       #B8860B;
+      --gold-light: #D4A017;
+      --gold-pale:  #F0E0C0;
+      --dark:       #1A1208;
+      --brown:      #3B2507;
+      --brown-mid:  #5C3A1E;
+      --cream:      #2C1A0E;
+      --warm-gray:  #9E8A72;
+      --white:      #FFFDF8;
+      --bg:         #1E1108;
+      --bg-section: #251609;
+      --bg-card:    #2E1B0D;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: var(--bg);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(20,10,4,0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(184,134,11,0.3);
+      transition: padding 0.4s;
+    }
+
+    .nav-brand {
+      display: flex; align-items: center; gap: 0.8rem;
+      text-decoration: none;
+    }
+    .nav-logo-circle {
+      width: 42px; height: 42px; border-radius: 50%;
+      border: 1.5px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; color: var(--gold);
+    }
+    .nav-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--white); letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .nav-subtitle {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.55rem; color: var(--gold-light);
+      letter-spacing: 0.25em; text-transform: uppercase;
+      display: block; margin-top: 1px;
+    }
+
+    .nav-links {
+      display: flex; gap: 2.5rem;
+      list-style: none; align-items: center;
+    }
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(255,253,248,0.75);
+      text-decoration: none; position: relative; transition: color 0.3s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px; background: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links .btn-menu {
+      background: var(--gold); color: var(--dark);
+      padding: 0.55rem 1.4rem; font-weight: 600;
+      transition: background 0.3s;
+    }
+    .nav-links .btn-menu:hover { background: var(--gold-light); }
+    .nav-links .btn-menu::after { display: none; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; z-index: 200;
+    }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); transition: all 0.3s; }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(160deg, rgba(20,10,4,0.78) 0%, rgba(50,28,8,0.68) 50%, rgba(20,10,4,0.88) 100%),
+        url('1.jpg') center/cover no-repeat;
+      animation: heroZoom 20s ease-in-out infinite alternate;
+    }
+    @keyframes heroZoom {
+      from { transform: scale(1); }
+      to   { transform: scale(1.07); }
+    }
+
+    .hero-frame {
+      position: absolute; inset: 60px 40px 40px;
+      border: 1px solid rgba(184,134,11,0.22); pointer-events: none;
+    }
+    .hero-frame::before, .hero-frame::after {
+      content: ''; position: absolute;
+      width: 22px; height: 22px;
+      border-color: var(--gold); border-style: solid;
+    }
+    .hero-frame::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .hero-frame::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 2rem; max-width: 800px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem; letter-spacing: 0.5em;
+      color: var(--gold); text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      opacity: 0; animation: fadeUp 0.9s 0.3s forwards;
+    }
+
+    .hero-box {
+      border: 2px solid var(--gold);
+      padding: 2.5rem 3.5rem; margin-bottom: 2rem;
+      opacity: 0; animation: fadeUp 0.9s 0.6s forwards;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 9vw, 6.5rem);
+      font-weight: 900; color: var(--gold);
+      letter-spacing: 0.08em; line-height: 1; text-transform: uppercase;
+    }
+    .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 1rem auto; }
+    .hero-subtitle {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(0.75rem, 2vw, 1rem);
+      letter-spacing: 0.5em; color: var(--gold-light); text-transform: uppercase;
+    }
+
+    .hero-taglines { opacity: 0; animation: fadeUp 0.9s 0.9s forwards; }
+    .hero-tag1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+      font-style: italic; font-weight: 300;
+      color: var(--white); letter-spacing: 0.05em; margin-bottom: 0.8rem;
+    }
+    .hero-tag2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.95rem, 2vw, 1.2rem);
+      color: rgba(255,253,248,0.65); font-weight: 300;
+      letter-spacing: 0.04em; margin-bottom: 2.5rem;
+    }
+
+    .hero-cta-group {
+      display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.9s 1.2s forwards;
+    }
+    .btn-primary {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+      text-decoration: none; padding: 1rem 2.8rem;
+      background: var(--gold); color: var(--dark); font-weight: 600;
+      transition: all 0.3s; border: 2px solid var(--gold); display: inline-block;
+    }
+    .btn-primary:hover { background: transparent; color: var(--gold); }
+    .btn-outline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+      text-decoration: none; padding: 1rem 2.8rem;
+      background: transparent; color: var(--white); font-weight: 400;
+      transition: all 0.3s; border: 1px solid rgba(255,253,248,0.35); display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .scroll-indicator {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      opacity: 0; animation: fadeUp 1s 1.8s forwards;
+    }
+    .scroll-indicator span {
+      font-family: 'Montserrat', sans-serif; font-size: 0.55rem;
+      letter-spacing: 0.3em; color: rgba(255,253,248,0.4); text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: 0.3; } 50% { opacity: 1; }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== GALLERY SECTION ===== */
+    .section-gallery {
+      padding: 7rem 5%;
+      background: var(--bg-section);
+      position: relative;
+    }
+    .section-gallery::before {
+      content: ''; position: absolute;
+      top: 0; left: 5%; right: 5%; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem; letter-spacing: 0.5em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;
+      color: var(--white); line-height: 1.2;
+    }
+    .section-line { width: 50px; height: 2px; background: var(--gold); margin: 1.2rem auto 0; }
+
+    /* Grid: 2 photos top, video bottom-left, photo bottom-right */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 340px 340px;
+      gap: 16px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(184,134,11,0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    /* Video item */
+    .gallery-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* Gold corner accents on each cell */
+    .gallery-item::before,
+    .gallery-item::after {
+      content: ''; position: absolute;
+      width: 18px; height: 18px;
+      border-color: var(--gold); border-style: solid;
+      z-index: 2; pointer-events: none;
+    }
+    .gallery-item::before { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
+    .gallery-item::after  { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
+
+    /* Subtle overlay on images */
+    .gallery-item .overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(20,10,4,0.45) 0%, transparent 50%);
+      pointer-events: none; z-index: 1;
+      transition: opacity 0.4s;
+    }
+    .gallery-item:hover .overlay { opacity: 0.3; }
+
+    /* Label on each photo */
+    .gallery-label {
+      position: absolute; bottom: 18px; left: 18px;
+      z-index: 3;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-style: italic;
+      color: rgba(255,253,248,0.9);
+      letter-spacing: 0.06em;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+    }
+
+    /* Wide item spans 2 columns */
+    .gallery-item--wide {
+      grid-column: span 2;
+    }
+    /* Specific layout: row1 = 2 photos, row2 = video + 1 photo */
+    .gallery-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .gallery-item:nth-child(2) { grid-column: 2; grid-row: 1; }
+    .gallery-item:nth-child(3) { grid-column: 1; grid-row: 2; } /* video */
+    .gallery-item:nth-child(4) { grid-column: 2; grid-row: 2; }
+
+    /* ===== MENU CTA SECTION ===== */
+    .section-menu-cta {
+      padding: 6rem 5%;
+      background: var(--bg);
+      text-align: center;
+      position: relative;
+    }
+    .section-menu-cta::before {
+      content: ''; position: absolute;
+      top: 0; left: 5%; right: 5%; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+
+    .menu-cta-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .menu-cta-inner .section-title { color: var(--white); margin-bottom: 1.5rem; }
+    .menu-cta-inner p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; color: var(--warm-gray);
+      font-weight: 300; line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ===== ABOUT ===== */
+    .section-about {
+      padding: 7rem 5%;
+      background: var(--bg-section);
+      position: relative; overflow: hidden;
+    }
+    .section-about::before {
+      content: '"'; position: absolute;
+      top: -2rem; left: 3%;
+      font-family: 'Playfair Display', serif;
+      font-size: 20rem; color: rgba(184,134,11,0.04);
+      line-height: 1; pointer-events: none;
+    }
+    .section-about::after {
+      content: ''; position: absolute;
+      top: 0; left: 5%; right: 5%; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+
+    .about-inner {
+      max-width: 800px; margin: 0 auto;
+      text-align: center; position: relative; z-index: 1;
+    }
+    .about-inner .section-title { color: var(--white); margin-bottom: 2rem; }
+    .about-text {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      font-weight: 300; color: rgba(255,253,248,0.7);
+      line-height: 1.9; margin-bottom: 3.5rem;
+    }
+
+    .quotes-strip {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem; max-width: 1000px; margin: 0 auto;
+      padding-top: 4rem; border-top: 1px solid rgba(184,134,11,0.2);
+    }
+    .quote-item { text-align: center; padding: 1rem; }
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; color: var(--gold); line-height: 1; display: block; margin-bottom: 0.5rem;
+    }
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem; font-style: italic;
+      color: rgba(255,253,248,0.5); line-height: 1.6;
+    }
+
+    /* ===== CONTACT BANNER ===== */
+    .section-contact {
+      padding: 5rem 5%;
+      background: var(--bg-card);
+      text-align: center; position: relative;
+    }
+    .section-contact::before, .section-contact::after {
+      content: ''; position: absolute; left: 5%; right: 5%; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .section-contact::before { top: 0; }
+    .section-contact::after  { bottom: 0; }
+    .section-contact .section-title { color: var(--white); }
+
+    .contact-info {
+      display: flex; justify-content: center; gap: 3.5rem;
+      flex-wrap: wrap; margin-top: 2.5rem;
+    }
+    .contact-item { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+    .contact-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem; letter-spacing: 0.3em; color: var(--warm-gray); text-transform: uppercase;
+    }
+    .contact-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--gold-pale); font-weight: 500;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark); padding: 3rem 5%; text-align: center;
+      border-top: 1px solid rgba(184,134,11,0.2);
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 900;
+      letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase;
+    }
+    .footer-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.55rem; letter-spacing: 0.4em; color: var(--warm-gray);
+      text-transform: uppercase; margin-top: 0.3rem; margin-bottom: 1.8rem;
+    }
+    .footer-nav {
+      display: flex; justify-content: center; gap: 2rem;
+      list-style: none; margin-bottom: 2rem;
+    }
+    .footer-nav a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.2em; color: rgba(255,253,248,0.35);
+      text-decoration: none; text-transform: uppercase; transition: color 0.3s;
+    }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-copy {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem; color: rgba(255,253,248,0.2);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none; position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(20,10,4,0.98);
+        flex-direction: column; justify-content: center;
+        align-items: center; gap: 2.5rem; z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1rem; }
+      .hamburger { display: flex; }
+      .hero-box { padding: 1.5rem 2rem; }
+      .hero-frame { inset: 70px 20px 20px; }
+      .hero-cta-group { flex-direction: column; align-items: center; }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 280px 280px 260px 280px;
+      }
+      .gallery-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+      .gallery-item:nth-child(2) { grid-column: 1; grid-row: 2; }
+      .gallery-item:nth-child(3) { grid-column: 1; grid-row: 3; }
+      .gallery-item:nth-child(4) { grid-column: 1; grid-row: 4; }
+
+      .contact-info { flex-direction: column; align-items: center; gap: 2rem; }
+      .quotes-strip { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo-circle">S</div>
+      <div>
+        <div class="nav-title">SIBARA</div>
+        <span class="nav-subtitle">Cafe De Altura</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="menu.html" class="btn-menu">Menú</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-frame"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Chapala, Jalisco</p>
+      <div class="hero-box">
+        <h1 class="hero-title">SIBARA</h1>
+        <div class="hero-divider"></div>
+        <p class="hero-subtitle">Cafe de Altura</p>
+      </div>
+      <div class="hero-taglines">
+        <p class="hero-tag1">El café se disfruta sin presión.</p>
+        <p class="hero-tag2">El lugar perfecto para disfrutar café de calidad<br>en un ambiente cómodo y tranquilo</p>
+        <div class="hero-cta-group">
+          <a href="menu.html" class="btn-primary">Ver Menú</a>
+          <a href="contact.html" class="btn-outline">Contáctanos</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Descubrir</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section-gallery" id="galeria">
+    <div class="section-header">
+      <p class="section-eyebrow">Nuestras Bebidas</p>
+      <h2 class="section-title">Una experiencia para los sentidos</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="gallery-grid">
+
+      <!-- Foto 1 -->
+      <div class="gallery-item">
+        <img src="1.jpg" alt="Bebidas SIBARA" />
+        <div class="overlay"></div>
+        <span class="gallery-label">Bebidas artesanales</span>
+      </div>
+
+      <!-- Foto 2 -->
+      <div class="gallery-item">
+        <img src="2.jpg" alt="Latés y matchas" />
+        <div class="overlay"></div>
+        <span class="gallery-label">Latés &amp; Matchas</span>
+      </div>
+
+      <!-- Video -->
+      <div class="gallery-item">
+        <video autoplay muted loop playsinline>
+          <source src="smothie.mp4" type="video/mp4" />
+        </video>
+        <div class="overlay"></div>
+        <span class="gallery-label">Smothies frescos</span>
+      </div>
+
+      <!-- Foto 3 -->
+      <div class="gallery-item">
+        <img src="3.jpg" alt="Frappes SIBARA" />
+        <div class="overlay"></div>
+        <span class="gallery-label">Frappes cremosos</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MENU CTA -->
+  <section class="section-menu-cta" id="menu">
+    <div class="menu-cta-inner">
+      <p class="section-eyebrow">Lo que ofrecemos</p>
+      <h2 class="section-title">Nuestro Menú</h2>
+      <div class="section-line" style="margin-bottom:2rem"></div>
+      <p>
+        Bebidas frías en las rocas, frappes, smothies, tizanas, sodas italianas,
+        cappuccinos, lattes, chocolates y mucho más — acompañados de pastel,
+        bagels y panadería fresca.
+      </p>
+      <a href="menu.html" class="btn-primary">Ver Menú Completo</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section-about" id="nosotros">
+    <div class="about-inner">
+      <p class="section-eyebrow">Nuestra Historia</p>
+      <h2 class="section-title">Un Espacio Hecho para Ti</h2>
+      <p class="about-text">
+        En Sibara Café de Altura queremos que cada persona se sienta bienvenida desde el momento en que entra.
+        Nuestro espacio está pensado para que puedas disfrutar un buen café en un ambiente tranquilo y agradable,
+        ya sea para reunirte con amigos, trabajar, estudiar o simplemente relajarte.
+        Te invitamos a visitarnos y vivir una experiencia cálida acompañada de bebidas deliciosas y un servicio amable.
+      </p>
+      <a href="menu.html" class="btn-primary">Explorar el Menú</a>
+    </div>
+
+    <div class="quotes-strip">
+      <div class="quote-item">
+        <span class="quote-mark">"</span>
+        <p class="quote-text">Un buen café siempre acompaña una buena conversación.</p>
+      </div>
+      <div class="quote-item">
+        <span class="quote-mark">"</span>
+        <p class="quote-text">El aroma del café es la mejor bienvenida.</p>
+      </div>
+      <div class="quote-item">
+        <span class="quote-mark">"</span>
+        <p class="quote-text">Pequeños momentos, grandes tazas de café.</p>
+      </div>
+      <div class="quote-item">
+        <span class="quote-mark">"</span>
+        <p class="quote-text">El café sabe mejor cuando se comparte.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section-contact" id="contacto">
+    <div class="section-header">
+      <p class="section-eyebrow">Encuéntranos</p>
+      <h2 class="section-title">Visítanos</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="contact-label">Teléfono</span>
+        <span class="contact-value">331 067 5417</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Correo</span>
+        <span class="contact-value">sibara@gmail.com</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Instagram</span>
+        <span class="contact-value">@sibara_valle</span>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem">
+      <a href="contact.html" class="btn-primary">Más Información</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">SIBARA</div>
+    <div class="footer-sub">Cafe De Altura</div>
+    <ul class="footer-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="menu.html">Menú</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2026 SIBARA Cafe De Altura — Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      nav.style.padding = window.scrollY > 60 ? '0.8rem 5%' : '1.2rem 5%';
+    });
+  </script>
+
+</body>
+</html>
