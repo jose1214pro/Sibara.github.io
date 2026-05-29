@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="SIBARA Cafe De Altura — Contáctanos, encuéntranos y visítanos en Chapala, Jalisco."/>
+  <title>SIBARA Cafe De Altura — Contact Us</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold:       #B8860B;
+      --gold-light: #D4A017;
+      --gold-pale:  #F0E0C0;
+      --dark:       #1A1208;
+      --brown:      #3B2507;
+      --warm-gray:  #9E8A72;
+      --white:      #FFFDF8;
+      --bg:         #1E1108;
+      --bg-section: #251609;
+      --bg-card:    #2E1B0D;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: var(--bg); color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:100;
+      display: flex; align-items:center; justify-content:space-between;
+      padding: 1.2rem 5%;
+      background: rgba(20,10,4,0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(184,134,11,0.3);
+      transition: padding 0.4s;
+    }
+    .nav-brand { display:flex; align-items:center; gap:0.8rem; text-decoration:none; }
+    .nav-logo-circle {
+      width:42px; height:42px; border-radius:50%;
+      border:1.5px solid var(--gold);
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Playfair Display',serif; font-size:1rem; color:var(--gold);
+    }
+    .nav-title {
+      font-family:'Playfair Display',serif; font-size:1rem; font-weight:700;
+      color:var(--white); letter-spacing:0.12em; text-transform:uppercase;
+    }
+    .nav-subtitle {
+      font-family:'Montserrat',sans-serif; font-size:0.55rem; color:var(--gold-light);
+      letter-spacing:0.25em; text-transform:uppercase; display:block; margin-top:1px;
+    }
+    .nav-links { display:flex; gap:2.5rem; list-style:none; align-items:center; }
+    .nav-links a {
+      font-family:'Montserrat',sans-serif; font-size:0.72rem; letter-spacing:0.2em;
+      text-transform:uppercase; color:rgba(255,253,248,0.75);
+      text-decoration:none; position:relative; transition:color 0.3s;
+    }
+    .nav-links a::after {
+      content:''; position:absolute; bottom:-4px; left:0;
+      width:0; height:1px; background:var(--gold); transition:width 0.3s;
+    }
+    .nav-links a:hover { color:var(--gold); }
+    .nav-links a:hover::after { width:100%; }
+    .nav-links .btn-menu {
+      background:var(--gold); color:var(--dark);
+      padding:0.55rem 1.4rem; font-weight:600; transition:background 0.3s;
+    }
+    .nav-links .btn-menu:hover { background:var(--gold-light); }
+    .nav-links .btn-menu::after { display:none; }
+    .hamburger {
+      display:none; flex-direction:column; gap:5px;
+      cursor:pointer; padding:4px; z-index:200;
+    }
+    .hamburger span { display:block; width:24px; height:2px; background:var(--gold); transition:all 0.3s; }
+
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      position: relative;
+      min-height: 52vh;
+      display: flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      text-align:center; overflow:hidden;
+      padding-top: 100px; padding-bottom: 0;
+    }
+    .hero-bg {
+      position:absolute; inset:0;
+      background:
+        linear-gradient(160deg, rgba(20,10,4,0.82) 0%, rgba(40,22,6,0.72) 50%, rgba(20,10,4,0.92) 100%),
+        url('4.jpg') center/cover no-repeat;
+      animation: heroZoom 20s ease-in-out infinite alternate;
+    }
+    @keyframes heroZoom {
+      from { transform:scale(1); }
+      to   { transform:scale(1.06); }
+    }
+    .hero-frame {
+      position:absolute; inset:60px 40px 0;
+      border:1px solid rgba(184,134,11,0.18); pointer-events:none;
+    }
+    .hero-frame::before, .hero-frame::after {
+      content:''; position:absolute;
+      width:22px; height:22px; border-color:var(--gold); border-style:solid;
+    }
+    .hero-frame::before { top:-1px; left:-1px; border-width:2px 0 0 2px; }
+    .hero-frame::after  { top:-1px; right:-1px; border-width:2px 2px 0 0; }
+
+    .hero-content {
+      position:relative; z-index:2; padding:2rem; max-width:700px;
+    }
+    .hero-eyebrow {
+      font-family:'Montserrat',sans-serif; font-size:0.65rem;
+      letter-spacing:0.5em; color:var(--gold); text-transform:uppercase;
+      margin-bottom:1.2rem; display:block;
+      opacity:0; animation:fadeUp 0.9s 0.3s forwards;
+    }
+    .hero-title {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(3rem,7vw,5.5rem); font-weight:900;
+      color:var(--white); letter-spacing:0.06em; text-transform:uppercase;
+      line-height:1.05;
+      opacity:0; animation:fadeUp 0.9s 0.5s forwards;
+    }
+    .hero-divider { width:55px; height:2px; background:var(--gold); margin:1.2rem auto; opacity:0; animation:fadeUp 0.9s 0.65s forwards; }
+    .hero-tag {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(1rem,2vw,1.25rem); font-weight:300; font-style:italic;
+      color:rgba(255,253,248,0.7); letter-spacing:0.04em;
+      opacity:0; animation:fadeUp 0.9s 0.8s forwards;
+    }
+
+    /* wave divider */
+    .wave-divider {
+      position:relative; z-index:2; margin-top:3rem;
+      width:100%; overflow:hidden; line-height:0;
+    }
+    .wave-divider svg { display:block; width:100%; }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ===== SECTION GOLD DIVIDER ===== */
+    .gold-rule {
+      width:100%; height:1px;
+      background:linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+
+    /* ===== LOCATION + MAP SECTION ===== */
+    .section-location {
+      padding: 6rem 5%; background:var(--bg-section);
+    }
+    .section-inner { max-width:1100px; margin:0 auto; }
+    .section-eyebrow {
+      font-family:'Montserrat',sans-serif; font-size:0.62rem;
+      letter-spacing:0.5em; color:var(--gold); text-transform:uppercase;
+      margin-bottom:0.9rem; display:block;
+    }
+    .section-title {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2rem,4vw,3rem); font-weight:700; color:var(--white);
+    }
+    .section-line { width:46px; height:2px; background:var(--gold); margin:1.1rem 0 2.5rem; }
+
+    .location-grid {
+      display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; align-items:start;
+    }
+
+    /* Map embed */
+    .map-wrap {
+      position:relative;
+      border:1px solid rgba(184,134,11,0.3);
+      overflow:hidden;
+    }
+    .map-wrap::before, .map-wrap::after {
+      content:''; position:absolute;
+      width:20px; height:20px; border-color:var(--gold); border-style:solid; z-index:2;
+    }
+    .map-wrap::before { top:10px; left:10px; border-width:2px 0 0 2px; }
+    .map-wrap::after  { bottom:10px; right:10px; border-width:0 2px 2px 0; }
+    .map-wrap iframe {
+      display:block; width:100%; height:420px;
+      border:0; filter:saturate(0.3) brightness(0.7) sepia(0.4);
+      transition:filter 0.4s;
+    }
+    .map-wrap:hover iframe { filter:saturate(0.6) brightness(0.85) sepia(0.2); }
+
+    /* Coords badge */
+    .map-coords {
+      display:inline-flex; align-items:center; gap:0.6rem;
+      margin-top:1rem;
+      font-family:'Montserrat',sans-serif; font-size:0.62rem;
+      letter-spacing:0.18em; color:var(--warm-gray); text-transform:uppercase;
+    }
+    .map-coords::before {
+      content:''; display:inline-block;
+      width:6px; height:6px; border-radius:50%;
+      background:var(--gold); flex-shrink:0;
+    }
+
+    /* Contact details column */
+    .contact-details {}
+
+    .contact-block {
+      margin-bottom:2.8rem;
+    }
+    .contact-block-title {
+      font-family:'Montserrat',sans-serif; font-size:0.58rem;
+      letter-spacing:0.4em; color:var(--gold); text-transform:uppercase;
+      margin-bottom:1rem; display:block;
+    }
+
+    .contact-item {
+      display:flex; align-items:flex-start; gap:1rem;
+      padding:1rem 1.2rem; margin-bottom:0.6rem;
+      border:1px solid rgba(184,134,11,0.18);
+      background:rgba(184,134,11,0.04);
+      transition:border-color 0.3s, background 0.3s;
+      text-decoration:none;
+    }
+    .contact-item:hover {
+      border-color:rgba(184,134,11,0.5);
+      background:rgba(184,134,11,0.09);
+    }
+    .contact-icon {
+      width:36px; height:36px; border-radius:50%;
+      border:1px solid rgba(184,134,11,0.35);
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0; color:var(--gold); font-size:1rem;
+    }
+    .contact-text {}
+    .contact-label {
+      font-family:'Montserrat',sans-serif; font-size:0.56rem;
+      letter-spacing:0.3em; color:var(--warm-gray); text-transform:uppercase;
+      display:block; margin-bottom:0.2rem;
+    }
+    .contact-value {
+      font-family:'Playfair Display',serif;
+      font-size:1.1rem; color:var(--gold-pale); font-weight:500;
+    }
+
+    /* Hours table */
+    .hours-grid {
+      border:1px solid rgba(184,134,11,0.18);
+      overflow:hidden;
+    }
+    .hours-row {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:0.75rem 1.2rem;
+      border-bottom:1px solid rgba(184,134,11,0.1);
+      transition:background 0.2s;
+    }
+    .hours-row:last-child { border-bottom:none; }
+    .hours-row:hover { background:rgba(184,134,11,0.05); }
+    .hours-day {
+      font-family:'Montserrat',sans-serif; font-size:0.65rem;
+      letter-spacing:0.15em; text-transform:uppercase;
+      color:rgba(255,253,248,0.6);
+    }
+    .hours-time {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1rem; color:var(--gold-pale); font-weight:500;
+    }
+    .hours-dot {
+      width:6px; height:6px; border-radius:50%;
+      background:var(--gold); opacity:0.5; flex-shrink:0; margin:0 0.8rem;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .section-about {
+      padding:6rem 5%; background:var(--bg); position:relative; overflow:hidden;
+    }
+    .section-about::before {
+      content:'"'; position:absolute; top:-3rem; left:2%;
+      font-family:'Playfair Display',serif;
+      font-size:22rem; color:rgba(184,134,11,0.03);
+      line-height:1; pointer-events:none;
+    }
+    .about-grid {
+      display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;
+      max-width:1100px; margin:0 auto; position:relative; z-index:1;
+    }
+    .about-text-col {}
+    .about-body {
+      font-size:clamp(1rem,1.7vw,1.15rem); font-weight:300;
+      color:rgba(255,253,248,0.65); line-height:1.95;
+      margin-bottom:2rem;
+    }
+    .about-body + .about-body { margin-top:0; }
+
+    /* Photo stack */
+    .about-photos {
+      display:grid; grid-template-columns:1fr 1fr; gap:14px;
+    }
+    .about-photo {
+      position:relative; overflow:hidden;
+      border:1px solid rgba(184,134,11,0.2);
+    }
+    .about-photo img {
+      width:100%; height:220px; object-fit:cover; display:block;
+      transition:transform 0.6s;
+    }
+    .about-photo:hover img { transform:scale(1.05); }
+    .about-photo:first-child { grid-column:span 2; }
+    .about-photo:first-child img { height:280px; }
+    .about-photo::before, .about-photo::after {
+      content:''; position:absolute;
+      width:14px; height:14px; border-color:var(--gold); border-style:solid; z-index:2;
+    }
+    .about-photo::before { top:8px; left:8px; border-width:2px 0 0 2px; }
+    .about-photo::after  { bottom:8px; right:8px; border-width:0 2px 2px 0; }
+    .about-photo .overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(20,10,4,0.4) 0%, transparent 60%);
+      pointer-events:none;
+    }
+
+    /* ===== QUOTES STRIP ===== */
+    .quotes-strip {
+      padding:5rem 5%; background:var(--bg-section); position:relative;
+    }
+    .quotes-strip::before {
+      content:''; position:absolute; top:0; left:5%; right:5%; height:1px;
+      background:linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .quotes-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:2rem; max-width:1000px; margin:0 auto;
+    }
+    .quote-item { text-align:center; padding:1.2rem; }
+    .quote-mark {
+      font-family:'Playfair Display',serif;
+      font-size:2.5rem; color:var(--gold); line-height:1; display:block; margin-bottom:0.5rem;
+    }
+    .quote-text {
+      font-family:'Cormorant Garamond',serif;
+      font-size:0.95rem; font-style:italic;
+      color:rgba(255,253,248,0.45); line-height:1.65;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background:var(--dark); padding:3rem 5%; text-align:center;
+      border-top:1px solid rgba(184,134,11,0.2);
+    }
+    .footer-brand {
+      font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900;
+      letter-spacing:0.15em; color:var(--gold); text-transform:uppercase;
+    }
+    .footer-sub {
+      font-family:'Montserrat',sans-serif; font-size:0.55rem;
+      letter-spacing:0.4em; color:var(--warm-gray); text-transform:uppercase;
+      margin-top:0.3rem; margin-bottom:1.8rem;
+    }
+    .footer-nav {
+      display:flex; justify-content:center; gap:2rem;
+      list-style:none; margin-bottom:2rem;
+    }
+    .footer-nav a {
+      font-family:'Montserrat',sans-serif; font-size:0.65rem;
+      letter-spacing:0.2em; color:rgba(255,253,248,0.35);
+      text-decoration:none; text-transform:uppercase; transition:color 0.3s;
+    }
+    .footer-nav a:hover { color:var(--gold); }
+    .footer-copy {
+      font-family:'Cormorant Garamond',serif;
+      font-size:0.85rem; color:rgba(255,253,248,0.2);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width:900px) {
+      .location-grid { grid-template-columns:1fr; }
+      .about-grid { grid-template-columns:1fr; }
+      .about-photos { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:768px) {
+      .nav-links {
+        display:none; position:fixed; top:0; left:0; right:0; bottom:0;
+        background:rgba(20,10,4,0.98); flex-direction:column;
+        justify-content:center; align-items:center; gap:2.5rem; z-index:99;
+      }
+      .nav-links.open { display:flex; }
+      .nav-links a { font-size:1rem; }
+      .hamburger { display:flex; }
+      .hero-frame { inset:70px 20px 0; }
+      .quotes-grid { grid-template-columns:1fr; }
+      .about-photos { grid-template-columns:1fr; }
+      .about-photo:first-child { grid-column:1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo-circle">S</div>
+    <div>
+      <div class="nav-title">SIBARA</div>
+      <span class="nav-subtitle">Cafe De Altura</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="menu.html" class="btn-menu">Menú</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-frame"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Chapala, Jalisco</span>
+    <h1 class="hero-title">Contact Us</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-tag">Un rincón especial para disfrutar café de calidad,<br>buena compañía y un ambiente acogedor. ☕🌿</p>
+  </div>
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#251609"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ===== LOCATION + MAP ===== -->
+<section class="section-location">
+  <div class="section-inner">
+    <span class="section-eyebrow">Ubicación</span>
+    <h2 class="section-title">Location</h2>
+    <div class="section-line"></div>
+
+    <div class="location-grid">
+
+      <!-- MAP -->
+      <div>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1042.4535581479045!2d-102.9438341981623!3d19.93205980207921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842f070017a54a31%3A0xe486312e4407d3a4!2s%C3%93ptica%20valle%20de%20Ju%C3%A1rez!5e0!3m2!1ses-419!2smx!4v1780025782132!5m2!1ses-419!2smx"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación SIBARA Cafe De Altura">
+          </iframe>
+        </div>
+        <p class="map-coords">19°55'54.3"N &nbsp;102°56'35.5"W</p>
+      </div>
+
+      <!-- CONTACT DETAILS + HOURS -->
+      <div class="contact-details">
+
+        <div class="contact-block">
+          <span class="contact-block-title">Contact Us</span>
+
+          <a href="mailto:sibara@gmail.com" class="contact-item">
+            <div class="contact-icon">✉</div>
+            <div class="contact-text">
+              <span class="contact-label">Email</span>
+              <span class="contact-value">sibara@gmail.com</span>
+            </div>
+          </a>
+
+          <a href="tel:3310675417" class="contact-item">
+            <div class="contact-icon">☎</div>
+            <div class="contact-text">
+              <span class="contact-label">Teléfono</span>
+              <span class="contact-value">331 067 5417</span>
+            </div>
+          </a>
+
+          <a href="https://instagram.com/sibara_valle" target="_blank" rel="noopener" class="contact-item">
+            <div class="contact-icon">📷</div>
+            <div class="contact-text">
+              <span class="contact-label">Instagram</span>
+              <span class="contact-value">@sibara_valle</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="contact-block">
+          <span class="contact-block-title">Hours of Operation</span>
+          <div class="hours-grid">
+            <div class="hours-row">
+              <span class="hours-day">Lunes</span>
+              <div class="hours-dot"></div>
+              <span class="hours-time">9:00 AM – 11:00 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Martes</span>
+              <div class="hours-dot"></div>
+              <span class="hours-time">9:00 AM – 11:00 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Miércoles</span>
+              <div class="hours-dot"></div>
+              <span class="hours-time">9:00 AM – 11:00 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Jueves</span>
+              <div class="hours-dot"></div>
+              <span class="hours-time">9:00 AM – 11:00 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Viernes</span>
+              <div class="hours-dot"></div>
+              <span class="hours-time">9:00 AM – 11:00 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Sábado</span>
+              <div class="hours-dot"></div>
+              <span class="hours-time">9:00 AM – 11:00 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Domingo</span>
+              <div class="hours-dot"></div>
+              <span class="hours-time">9:00 AM – 11:00 PM</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ===== ABOUT / EXPERIENCE ===== -->
+<section class="section-about">
+  <div class="about-grid">
+
+    <div class="about-text-col">
+      <span class="section-eyebrow">Nuestra Experiencia</span>
+      <h2 class="section-title">Sibara Café de Altura</h2>
+      <div class="section-line"></div>
+
+      <p class="about-body">
+        Un lugar cómodo y agradable donde cada taza de café se disfruta en un ambiente único. La experiencia del cliente en Sibara Café de Altura es cálida y acogedora. Nuestro ambiente es único porque nuestros baristas preparan cada bebida con dedicación, utilizando ingredientes de buena calidad y mucho cariño.
+      </p>
+      <p class="about-body">
+        Nos esforzamos por crear un espacio cómodo y amigable donde los clientes puedan relajarse, disfrutar su café, convivir con amigos o trabajar tranquilamente. Además, nuestro establecimiento se mantiene siempre limpio y ordenado para que cada persona se sienta a gusto durante su visita. ☕
+      </p>
+      <p class="about-body">
+        Al llegar a Sibara Café de Altura, encontrarás una barra donde puedes ordenar tu café y nuestras bebidas especiales. Nuestro personal estará listo para tomar tu orden y ayudarte con lo que necesites. Si lo prefieres, también puedes pasar directamente a tomar asiento y uno de nuestros colaboradores irá a atenderte. Contamos con mesas y sillones cómodos para que puedas relajarte, platicar con amigos o trabajar mientras disfrutas de tu bebida en un ambiente tranquilo y acogedor. ☕
+      </p>
+    </div>
+
+    <div class="about-photos">
+      <div class="about-photo">
+        <img src="1.jpg" alt="Interior SIBARA" />
+        <div class="overlay"></div>
+      </div>
+      <div class="about-photo">
+        <img src="2.jpg" alt="Bebidas SIBARA" />
+        <div class="overlay"></div>
+      </div>
+      <div class="about-photo">
+        <img src="3.jpg" alt="Ambiente SIBARA" />
+        <div class="overlay"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== QUOTES ===== -->
+<section class="quotes-strip">
+  <div class="quotes-grid">
+    <div class="quote-item">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">Un buen café siempre acompaña una buena conversación.</p>
+    </div>
+    <div class="quote-item">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">El aroma del café es la mejor bienvenida.</p>
+    </div>
+    <div class="quote-item">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">Pequeños momentos, grandes tazas de café.</p>
+    </div>
+    <div class="quote-item">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">El café sabe mejor cuando se comparte.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-brand">SIBARA</div>
+  <div class="footer-sub">Cafe De Altura</div>
+  <ul class="footer-nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="menu.html">Menú</a></li>
+  </ul>
+  <p class="footer-copy">&copy; 2026 SIBARA Cafe De Altura — Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.style.padding = window.scrollY > 60 ? '0.8rem 5%' : '1.2rem 5%';
+  });
+</script>
+</body>
+</html>

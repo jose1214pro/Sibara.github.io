@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="SIBARA Cafe De Altura — Menú completo de bebidas frías, calientes y alimentos."/>
+  <title>SIBARA Cafe De Altura — Menú</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold:       #B8860B;
+      --gold-light: #D4A017;
+      --gold-pale:  #F0E0C0;
+      --dark:       #1A1208;
+      --brown:      #3B2507;
+      --brown-mid:  #5C3A1E;
+      --warm-gray:  #9E8A72;
+      --white:      #FFFDF8;
+      --bg:         #1E1108;
+      --bg-section: #251609;
+      --bg-card:    #2E1B0D;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: var(--bg); color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(20,10,4,0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(184,134,11,0.3);
+      transition: padding 0.4s;
+    }
+    .nav-brand { display:flex; align-items:center; gap:0.8rem; text-decoration:none; }
+    .nav-logo-circle {
+      width:42px; height:42px; border-radius:50%;
+      border:1.5px solid var(--gold);
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Playfair Display',serif; font-size:1rem; color:var(--gold);
+    }
+    .nav-title {
+      font-family:'Playfair Display',serif; font-size:1rem; font-weight:700;
+      color:var(--white); letter-spacing:0.12em; text-transform:uppercase;
+    }
+    .nav-subtitle {
+      font-family:'Montserrat',sans-serif; font-size:0.55rem; color:var(--gold-light);
+      letter-spacing:0.25em; text-transform:uppercase; display:block; margin-top:1px;
+    }
+    .nav-links { display:flex; gap:2.5rem; list-style:none; align-items:center; }
+    .nav-links a {
+      font-family:'Montserrat',sans-serif; font-size:0.72rem; letter-spacing:0.2em;
+      text-transform:uppercase; color:rgba(255,253,248,0.75);
+      text-decoration:none; position:relative; transition:color 0.3s;
+    }
+    .nav-links a::after {
+      content:''; position:absolute; bottom:-4px; left:0;
+      width:0; height:1px; background:var(--gold); transition:width 0.3s;
+    }
+    .nav-links a:hover { color:var(--gold); }
+    .nav-links a:hover::after { width:100%; }
+    .nav-links .btn-menu {
+      background:var(--gold); color:var(--dark);
+      padding:0.55rem 1.4rem; font-weight:600; transition:background 0.3s;
+    }
+    .nav-links .btn-menu:hover { background:var(--gold-light); }
+    .nav-links .btn-menu::after { display:none; }
+    .hamburger {
+      display:none; flex-direction:column; gap:5px;
+      cursor:pointer; padding:4px; z-index:200;
+    }
+    .hamburger span { display:block; width:24px; height:2px; background:var(--gold); transition:all 0.3s; }
+
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      padding-top: 120px; padding-bottom: 4rem;
+      text-align: center; position: relative;
+      background: linear-gradient(to bottom, rgba(20,10,4,1) 0%, var(--bg-section) 100%);
+    }
+    .page-hero::after {
+      content:''; position:absolute; bottom:0; left:5%; right:5%; height:1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .page-eyebrow {
+      font-family:'Montserrat',sans-serif; font-size:0.62rem;
+      letter-spacing:0.5em; color:var(--gold); text-transform:uppercase;
+      margin-bottom:1rem; display:block;
+      opacity:0; animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .page-title {
+      font-family:'Playfair Display',serif;
+      font-size: clamp(2.5rem,6vw,4.5rem); font-weight:900;
+      color:var(--white); letter-spacing:0.06em; text-transform:uppercase;
+      opacity:0; animation: fadeUp 0.8s 0.4s forwards;
+    }
+    .page-line {
+      width:50px; height:2px; background:var(--gold);
+      margin: 1.2rem auto 0;
+      opacity:0; animation: fadeUp 0.8s 0.5s forwards;
+    }
+    .page-desc {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(1rem,1.8vw,1.2rem); font-weight:300;
+      color:rgba(255,253,248,0.6); line-height:1.8;
+      max-width:600px; margin:1.5rem auto 0;
+      opacity:0; animation: fadeUp 0.8s 0.6s forwards;
+    }
+
+    /* ===== SECTION SHARED ===== */
+    .section-label {
+      font-family:'Montserrat',sans-serif; font-size:0.62rem;
+      letter-spacing:0.5em; color:var(--gold); text-transform:uppercase;
+      margin-bottom:0.8rem; display:block;
+    }
+    .section-title {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:700;
+      color:var(--white); line-height:1.2;
+    }
+    .section-line { width:40px; height:2px; background:var(--gold); margin:1rem 0 2rem; }
+    .section-desc {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.05rem; font-weight:300;
+      color:rgba(255,253,248,0.55); line-height:1.8;
+      margin-bottom:2.5rem; max-width:600px;
+    }
+
+    /* ===== CATEGORY CARDS (Menu, Bebidas Frias, Bebidas Calientes, Alimentos) ===== */
+    .cat-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap:2rem; max-width:1100px; margin:0 auto;
+    }
+    .cat-card {
+      position:relative; overflow:hidden;
+      border:1px solid rgba(184,134,11,0.25);
+      cursor:pointer; transition:border-color 0.3s;
+      text-decoration:none; display:block;
+    }
+    .cat-card:hover { border-color:var(--gold); }
+    .cat-card img {
+      width:100%; height:260px; object-fit:cover;
+      display:block; transition:transform 0.6s;
+    }
+    .cat-card:hover img { transform:scale(1.05); }
+    .cat-card-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(20,10,4,0.82) 0%, rgba(20,10,4,0.1) 60%);
+      transition:opacity 0.4s;
+    }
+    .cat-card:hover .cat-card-overlay { opacity:0.7; }
+    .cat-card-body {
+      position:absolute; bottom:0; left:0; right:0;
+      padding:1.5rem; z-index:2;
+    }
+    .cat-card-body h3 {
+      font-family:'Playfair Display',serif;
+      font-size:1.5rem; font-weight:700; color:var(--white);
+      letter-spacing:0.04em; margin-bottom:0.4rem;
+    }
+    .cat-card-body p {
+      font-family:'Cormorant Garamond',serif;
+      font-size:0.9rem; font-weight:300;
+      color:rgba(255,253,248,0.65); line-height:1.5;
+    }
+    .cat-card-arrow {
+      position:absolute; top:1.2rem; right:1.2rem;
+      width:36px; height:36px; border:1px solid var(--gold);
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      color:var(--gold); font-size:1rem; z-index:2;
+      transform:translateX(10px); opacity:0; transition:all 0.3s;
+    }
+    .cat-card:hover .cat-card-arrow { transform:translateX(0); opacity:1; }
+    /* Gold corners */
+    .cat-card::before, .cat-card::after {
+      content:''; position:absolute;
+      width:16px; height:16px; border-color:var(--gold); border-style:solid; z-index:3;
+    }
+    .cat-card::before { top:8px; left:8px; border-width:2px 0 0 2px; }
+    .cat-card::after  { bottom:8px; right:8px; border-width:0 2px 2px 0; }
+
+    /* ===== MENU SUBPAGE (items list + photos) ===== */
+    .sub-section {
+      padding:5rem 5%; background:var(--bg-section); position:relative;
+    }
+    .sub-section::before {
+      content:''; position:absolute; top:0; left:5%; right:5%; height:1px;
+      background:linear-gradient(to right,transparent,var(--gold),transparent);
+    }
+    .sub-inner { max-width:1100px; margin:0 auto; }
+    .sub-layout {
+      display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start;
+    }
+
+    /* Items column */
+    .items-col {}
+    .items-group { margin-bottom:2rem; }
+    .items-group-title {
+      font-family:'Playfair Display',serif; font-size:1.2rem;
+      font-weight:700; color:var(--gold); letter-spacing:0.06em;
+      border-bottom:1px solid rgba(184,134,11,0.3);
+      padding-bottom:0.5rem; margin-bottom:1rem;
+    }
+    .items-list { list-style:none; }
+    .items-list li {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.1rem; font-weight:400; color:rgba(255,253,248,0.85);
+      padding:0.35rem 0; border-bottom:1px solid rgba(184,134,11,0.1);
+      display:flex; align-items:center; gap:0.6rem;
+      transition:color 0.2s;
+    }
+    .items-list li:hover { color:var(--gold-pale); }
+    .items-list li::before {
+      content:''; display:inline-block;
+      width:4px; height:4px; border-radius:50%; background:var(--gold);
+      flex-shrink:0;
+    }
+    .prices-box {
+      margin-top:1.5rem; padding:1.2rem 1.5rem;
+      border:1px solid rgba(184,134,11,0.3);
+      background:rgba(184,134,11,0.06);
+    }
+    .prices-box-title {
+      font-family:'Montserrat',sans-serif; font-size:0.6rem;
+      letter-spacing:0.35em; color:var(--gold); text-transform:uppercase;
+      margin-bottom:0.8rem; display:block;
+    }
+    .prices-row {
+      display:flex; gap:1.5rem; flex-wrap:wrap;
+    }
+    .price-item { text-align:center; }
+    .price-size {
+      font-family:'Montserrat',sans-serif; font-size:0.58rem;
+      letter-spacing:0.3em; color:var(--warm-gray); text-transform:uppercase;
+      display:block; margin-bottom:0.2rem;
+    }
+    .price-val {
+      font-family:'Playfair Display',serif;
+      font-size:1.2rem; color:var(--gold-pale); font-weight:700;
+    }
+
+    /* Photos column */
+    .photos-col { display:flex; flex-direction:column; gap:16px; }
+    .photo-item {
+      position:relative; overflow:hidden;
+      border:1px solid rgba(184,134,11,0.2);
+    }
+    .photo-item img, .photo-item video {
+      width:100%; height:280px; object-fit:cover; display:block;
+      transition:transform 0.6s;
+    }
+    .photo-item:hover img { transform:scale(1.04); }
+    .photo-item .photo-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top,rgba(20,10,4,0.4) 0%,transparent 60%);
+      pointer-events:none;
+    }
+    .photo-item::before, .photo-item::after {
+      content:''; position:absolute;
+      width:14px; height:14px; border-color:var(--gold); border-style:solid; z-index:2;
+    }
+    .photo-item::before { top:8px; left:8px; border-width:2px 0 0 2px; }
+    .photo-item::after  { bottom:8px; right:8px; border-width:0 2px 2px 0; }
+    /* 3-photo layout */
+    .photos-col.three-up { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .photos-col.three-up .photo-item:first-child { grid-column:span 2; }
+    /* 4-photo layout */
+    .photos-col.four-up { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+    /* ===== SECTION INFO strip ===== */
+    .info-strip {
+      padding:3.5rem 5%; background:var(--bg); text-align:center;
+      position:relative;
+    }
+    .info-strip::before {
+      content:''; position:absolute; top:0; left:5%; right:5%; height:1px;
+      background:linear-gradient(to right,transparent,var(--gold),transparent);
+    }
+    .info-strip p {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.1rem; font-weight:300; font-style:italic;
+      color:rgba(255,253,248,0.5); line-height:1.8; max-width:680px; margin:0 auto;
+    }
+
+    /* ===== CONTACT BANNER ===== */
+    .section-contact {
+      padding:4.5rem 5%; background:var(--bg-card);
+      text-align:center; position:relative;
+    }
+    .section-contact::before, .section-contact::after {
+      content:''; position:absolute; left:5%; right:5%; height:1px;
+      background:linear-gradient(to right,transparent,var(--gold),transparent);
+    }
+    .section-contact::before { top:0; }
+    .section-contact::after  { bottom:0; }
+    .contact-info {
+      display:flex; justify-content:center; gap:3.5rem;
+      flex-wrap:wrap; margin-top:2rem;
+    }
+    .contact-item { display:flex; flex-direction:column; align-items:center; gap:0.4rem; }
+    .contact-label {
+      font-family:'Montserrat',sans-serif; font-size:0.6rem;
+      letter-spacing:0.3em; color:var(--warm-gray); text-transform:uppercase;
+    }
+    .contact-value {
+      font-family:'Playfair Display',serif;
+      font-size:1.05rem; color:var(--gold-pale); font-weight:500;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background:var(--dark); padding:3rem 5%; text-align:center;
+      border-top:1px solid rgba(184,134,11,0.2);
+    }
+    .footer-brand {
+      font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900;
+      letter-spacing:0.15em; color:var(--gold); text-transform:uppercase;
+    }
+    .footer-sub {
+      font-family:'Montserrat',sans-serif; font-size:0.55rem;
+      letter-spacing:0.4em; color:var(--warm-gray); text-transform:uppercase;
+      margin-top:0.3rem; margin-bottom:1.8rem;
+    }
+    .footer-nav {
+      display:flex; justify-content:center; gap:2rem;
+      list-style:none; margin-bottom:2rem;
+    }
+    .footer-nav a {
+      font-family:'Montserrat',sans-serif; font-size:0.65rem;
+      letter-spacing:0.2em; color:rgba(255,253,248,0.35);
+      text-decoration:none; text-transform:uppercase; transition:color 0.3s;
+    }
+    .footer-nav a:hover { color:var(--gold); }
+    .footer-copy {
+      font-family:'Cormorant Garamond',serif;
+      font-size:0.85rem; color:rgba(255,253,248,0.2);
+    }
+
+    /* ===== TABS / NAV WITHIN PAGES ===== */
+    .tab-nav {
+      display:flex; flex-wrap:wrap; gap:0;
+      border-bottom:1px solid rgba(184,134,11,0.25);
+      max-width:1100px; margin:0 auto 3.5rem;
+      padding:0 0 0 0;
+    }
+    .tab-btn {
+      font-family:'Montserrat',sans-serif; font-size:0.65rem;
+      letter-spacing:0.18em; text-transform:uppercase;
+      color:rgba(255,253,248,0.5); background:none; border:none;
+      padding:0.9rem 1.5rem; cursor:pointer; position:relative;
+      transition:color 0.3s;
+    }
+    .tab-btn::after {
+      content:''; position:absolute; bottom:-1px; left:0; right:0;
+      height:2px; background:var(--gold); transform:scaleX(0); transition:transform 0.3s;
+    }
+    .tab-btn:hover { color:var(--gold-pale); }
+    .tab-btn.active { color:var(--gold); }
+    .tab-btn.active::after { transform:scaleX(1); }
+
+    .tab-content { display:none; }
+    .tab-content.active { display:block; }
+
+    /* ===== BREADCRUMB ===== */
+    .breadcrumb {
+      display:flex; align-items:center; gap:0.5rem;
+      padding:0 5%; max-width:1300px; margin:0 auto 1rem;
+      font-family:'Montserrat',sans-serif; font-size:0.6rem;
+      letter-spacing:0.15em; text-transform:uppercase;
+      color:rgba(255,253,248,0.35);
+    }
+    .breadcrumb a {
+      color:rgba(255,253,248,0.35); text-decoration:none; transition:color 0.3s;
+    }
+    .breadcrumb a:hover { color:var(--gold); }
+    .breadcrumb span.sep { color:rgba(184,134,11,0.4); }
+    .breadcrumb span.cur { color:var(--gold); }
+
+    /* ===== PADDING SECTIONS ===== */
+    .padded { padding:5rem 5%; }
+    .padded-top { padding-top:5rem; }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(22px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width:900px) {
+      .sub-layout { grid-template-columns:1fr; gap:2.5rem; }
+      .photos-col.three-up,
+      .photos-col.four-up { grid-template-columns:1fr; }
+      .photos-col.three-up .photo-item:first-child { grid-column:1; }
+    }
+    @media (max-width:768px) {
+      .nav-links {
+        display:none; position:fixed; top:0; left:0; right:0; bottom:0;
+        background:rgba(20,10,4,0.98); flex-direction:column;
+        justify-content:center; align-items:center; gap:2.5rem; z-index:99;
+      }
+      .nav-links.open { display:flex; }
+      .nav-links a { font-size:1rem; }
+      .hamburger { display:flex; }
+      .cat-grid { grid-template-columns:1fr; }
+      .contact-info { flex-direction:column; align-items:center; gap:1.8rem; }
+      .tab-btn { padding:0.7rem 0.9rem; font-size:0.58rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo-circle">S</div>
+    <div>
+      <div class="nav-title">SIBARA</div>
+      <span class="nav-subtitle">Cafe De Altura</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="menu.html" class="btn-menu">Menú</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ===================== MAIN MENU PAGE ===================== -->
+<div id="page-menu" class="page">
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <span class="page-eyebrow">Lo que ofrecemos</span>
+    <h1 class="page-title">Menú</h1>
+    <div class="page-line"></div>
+    <p class="page-desc">Explora nuestra selección de bebidas frías, calientes y alimentos pensados para hacerte disfrutar cada visita.</p>
+  </section>
+
+  <!-- Category cards -->
+  <section class="padded" style="background:var(--bg-section)">
+    <div class="cat-grid">
+
+      <a href="#" class="cat-card" onclick="goTo('page-bebidas-frias'); return false;">
+        <img src="Rocas/1.jpg" alt="Bebidas Frías" />
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-body">
+          <h3>Bebidas Frías</h3>
+          <p>Refrescantes bebidas en las rocas, frappes, smothies, tizanas, sodas italianas y más.</p>
+        </div>
+        <div class="cat-card-arrow">›</div>
+      </a>
+
+      <a href="#" class="cat-card" onclick="goTo('page-bebidas-calientes'); return false;">
+        <img src="Clasicos/1.jpg" alt="Bebidas Calientes" />
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-body">
+          <h3>Bebidas Calientes</h3>
+          <p>Cappuccinos, lattes, tizanas calientes, clásicos y chocolates reconfortantes.</p>
+        </div>
+        <div class="cat-card-arrow">›</div>
+      </a>
+
+      <a href="#" class="cat-card" onclick="goTo('page-alimentos'); return false;">
+        <img src="Pastel/1.jpg" alt="Alimentos" />
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-body">
+          <h3>Alimentos</h3>
+          <p>Pastel, bagels y panadería fresca — el complemento perfecto para tu café.</p>
+        </div>
+        <div class="cat-card-arrow">›</div>
+      </a>
+
+    </div>
+  </section>
+
+  <div class="info-strip">
+    <p>Refrescantes y deliciosas bebidas servidas en las rocas, ideales para disfrutar en cualquier momento del día.</p>
+  </div>
+
+  <!-- Contact -->
+  <section class="section-contact">
+    <span class="section-label">Encuéntranos</span>
+    <h2 class="section-title">Visítanos</h2>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="contact-label">Teléfono</span>
+        <span class="contact-value">331 067 5417</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Correo</span>
+        <span class="contact-value">sibara@gmail.com</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Instagram</span>
+        <span class="contact-value">@sibara_valle</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ===================== BEBIDAS FRÍAS ===================== -->
+<div id="page-bebidas-frias" class="page" style="display:none">
+
+  <section class="page-hero">
+    <span class="page-eyebrow">Menú — Bebidas Frías</span>
+    <h1 class="page-title">Bebidas Frías</h1>
+    <div class="page-line"></div>
+    <p class="page-desc">Disfruta nuestras refrescantes bebidas frías, preparadas con ingredientes de calidad y servidas en las rocas. Perfectas para acompañar un momento de descanso, estudio o una buena conversación. 🧊☕</p>
+  </section>
+
+  <section class="sub-section">
+    <div class="sub-inner">
+
+      <!-- Tab navigation -->
+      <div class="tab-nav" id="tabs-frias">
+        <button class="tab-btn active" onclick="switchTab('frias','rocas')">En las Rokas</button>
+        <button class="tab-btn" onclick="switchTab('frias','frapes')">Frappes &amp; Smothies</button>
+        <button class="tab-btn" onclick="switchTab('frias','tizanas')">Tizanas</button>
+        <button class="tab-btn" onclick="switchTab('frias','chocolates')">Chocolates</button>
+        <button class="tab-btn" onclick="switchTab('frias','clasicos')">Clásicos &amp; Especiales</button>
+        <button class="tab-btn" onclick="switchTab('frias','sodas')">Sodas Italianas</button>
+      </div>
+
+      <!-- TAB: Rocas -->
+      <div id="tab-frias-rocas" class="tab-content active">
+        <div class="sub-layout">
+          <div class="items-col">
+            <span class="section-label">Bebidas en las Rokas</span>
+            <h2 class="section-title">Latés &amp; Matchas</h2>
+            <div class="section-line"></div>
+            <p class="section-desc">Refresca tu día con nuestras bebidas en las rocas, preparadas con ingredientes de calidad y mucho sabor. Cada sorbo es una mezcla perfecta de frescura y cremosidad. 🧊☕</p>
+
+            <div class="items-group">
+              <div class="items-group-title">Latés</div>
+              <ul class="items-list">
+                <li>Caramel Macchiato</li>
+                <li>Moka</li>
+                <li>Taro</li>
+                <li>Cookies &amp; Cream</li>
+                <li>Latte De Tiramisu</li>
+                <li>Latte De Vanilla Francesa</li>
+                <li>Latte de Creama Irlandesa</li>
+                <li>Latte De Chocolate Suizo</li>
+                <li>Latte De Canela</li>
+                <li>Latte de Vanilla</li>
+                <li>Latte de Blueberry</li>
+                <li>Latte de Mango</li>
+                <li>Latte De Amaretto</li>
+                <li>Latte Dubai Chocolate</li>
+                <li>Latte De Nuez De Macademia</li>
+                <li>Latte de S'mores</li>
+              </ul>
+            </div>
+
+            <div class="items-group">
+              <div class="items-group-title">Matchas</div>
+              <ul class="items-list">
+                <li>Matcha</li>
+                <li>Matcha de Mango</li>
+                <li>Matcha de Frutos rojos</li>
+                <li>Matcha de Cereza</li>
+                <li>Matcha de Taro</li>
+              </ul>
+            </div>
+
+            <div class="prices-box">
+              <span class="prices-box-title">Tamaños</span>
+              <div class="prices-row">
+                <div class="price-item"><span class="price-size">Chico</span><span class="price-val">$69</span></div>
+                <div class="price-item"><span class="price-size">Grande</span><span class="price-val">$79</span></div>
+                <div class="price-item"><span class="price-size">Venti</span><span class="price-val">$120</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="photos-col">
+            <div class="photo-item">
+              <img src="Rocas/1.jpg" alt="Bebidas en las Rocas" />
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="photo-item">
+              <video autoplay muted loop playsinline>
+                <source src="lateeee.mp4" type="video/mp4" />
+              </video>
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="photo-item">
+              <img src="Rocas/2.jpg" alt="Latés SIBARA" />
+              <div class="photo-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Frapes & Smothies -->
+      <div id="tab-frias-frapes" class="tab-content">
+        <div class="sub-layout">
+          <div class="items-col">
+            <span class="section-label">Frappes &amp; Smothies</span>
+            <h2 class="section-title">Frappes &amp; Smothies</h2>
+            <div class="section-line"></div>
+            <p class="section-desc">Textura suave y cremosa que los hace perfectos para refrescarte. Son la opción ideal para acompañar una buena conversación o darte un pequeño gusto durante el día. 🧋🍓🥭</p>
+
+            <div class="items-group">
+              <div class="items-group-title">Frappes</div>
+              <ul class="items-list">
+                <li>Clasico</li><li>Vanilla</li><li>Vanilla Francesa</li>
+                <li>Caramelo</li><li>Moka</li><li>Moka Blanco</li>
+                <li>Tiramisu</li><li>Tequila</li><li>Crema Irlandesa</li>
+                <li>Cookie Butter</li><li>Cookie &amp; Cream</li><li>Taro</li>
+                <li>Cajeta</li><li>Nuez de Macademia</li><li>Chocolate Blanco</li>
+                <li>Dubai Chocolate</li><li>Canela</li><li>S'mores</li><li>Menta</li>
+              </ul>
+            </div>
+
+            <div class="items-group">
+              <div class="items-group-title">Smothies</div>
+              <ul class="items-list">
+                <li>Mango</li><li>Frutos Rojos</li><li>Manzana Verde</li>
+                <li>Maracuya</li><li>Fresa</li><li>Cereza</li><li>Piñada</li>
+                <li>Flamingos</li><li>Pink Drink</li><li>Kiwi</li>
+                <li>Frambuesa</li>
+              </ul>
+            </div>
+
+            <div class="prices-box">
+              <span class="prices-box-title">Tamaños</span>
+              <div class="prices-row">
+                <div class="price-item"><span class="price-size">Chico</span><span class="price-val">$69</span></div>
+                <div class="price-item"><span class="price-size">Grande</span><span class="price-val">$79</span></div>
+                <div class="price-item"><span class="price-size">Venti</span><span class="price-val">$120</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="photos-col three-up">
+            <div class="photo-item">
+              <img src="Frapes/1.jpg" alt="Frappes SIBARA" />
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="photo-item">
+              <img src="Frapes/2.jpg" alt="Smothies SIBARA" />
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="photo-item">
+              <img src="Frapes/3.jpg" alt="Frappes y Smothies" />
+              <div class="photo-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Tizanas -->
+      <div id="tab-frias-tizanas" class="tab-content">
+        <div class="sub-layout">
+          <div class="items-col">
+            <span class="section-label">Tizanas</span>
+            <h2 class="section-title">Tizanas</h2>
+            <div class="section-line"></div>
+            <p class="section-desc">Preparadas con mezclas de frutas y aromas naturales. Puedes elegirlas calientes para un momento relajante o frías para refrescarte durante el día. 🍓🍵🧊</p>
+
+            <div class="items-group">
+              <ul class="items-list">
+                <li>Amanecer</li><li>Maracuya</li><li>Fresa Kiwi</li>
+                <li>Fresa Mango</li><li>Serena Pasion</li><li>Moras</li>
+              </ul>
+            </div>
+
+            <div class="prices-box">
+              <span class="prices-box-title">Tamaños Fríos</span>
+              <div class="prices-row" style="margin-bottom:1rem">
+                <div class="price-item"><span class="price-size">Chico</span><span class="price-val">$69</span></div>
+                <div class="price-item"><span class="price-size">Grande</span><span class="price-val">$79</span></div>
+                <div class="price-item"><span class="price-size">Venti</span><span class="price-val">$120</span></div>
+              </div>
+              <span class="prices-box-title">Tamaños Calientes</span>
+              <div class="prices-row">
+                <div class="price-item"><span class="price-size">Chico</span><span class="price-val">$69</span></div>
+                <div class="price-item"><span class="price-size">Grande</span><span class="price-val">$79</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="photos-col">
+            <div class="photo-item">
+              <img src="Tinazas/1.jpg" alt="Tizanas SIBARA" />
+              <div class="photo-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Chocolates -->
+      <div id="tab-frias-chocolates" class="tab-content">
+        <div class="sub-layout">
+          <div class="items-col">
+            <span class="section-label">Chocolates</span>
+            <h2 class="section-title">Chocolates</h2>
+            <div class="section-line"></div>
+            <p class="section-desc">Preparados con un sabor intenso y una textura suave y cremosa. Calientes para reconfortarte o fríos para algo refrescante y dulce. 🍫☕🧊</p>
+
+            <div class="items-group">
+              <ul class="items-list">
+                <li>Chocolate Clasico</li>
+                <li>Chocolate Con Canela</li>
+                <li>Chocolate KitKat</li>
+                <li>Chocolate Belga</li>
+                <li>Chocolate Blanco</li>
+                <li>Chocolate Carlos V</li>
+              </ul>
+            </div>
+
+            <div class="prices-box">
+              <span class="prices-box-title">Tamaños Fríos</span>
+              <div class="prices-row" style="margin-bottom:1rem">
+                <div class="price-item"><span class="price-size">Chico</span><span class="price-val">$69</span></div>
+                <div class="price-item"><span class="price-size">Grande</span><span class="price-val">$79</span></div>
+                <div class="price-item"><span class="price-size">Venti</span><span class="price-val">$120</span></div>
+              </div>
+              <span class="prices-box-title">Tamaños Calientes</span>
+              <div class="prices-row">
+                <div class="price-item"><span class="price-size">Chico</span><span class="price-val">$69</span></div>
+                <div class="price-item"><span class="price-size">Grande</span><span class="price-val">$79</span></div>
+              </div>
+            </div>
+          </div>
+          <!-- Chocolates page on Sites had no photos in the extracted content -->
+          <div class="photos-col">
+            
+              <span style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--warm-gray);font-style:italic;">Chocolates artesanales</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Clásicos & Especiales -->
+      <div id="tab-frias-clasicos" class="tab-content">
+        <div class="sub-layout">
+          <div class="items-col">
+            <span class="section-label">Clásicos &amp; Especiales</span>
+            <h2 class="section-title">Clásicos &amp; Especiales</h2>
+            <div class="section-line"></div>
+            <p class="section-desc">Desde sabores intensos hasta mezclas suaves y aromáticas. Perfectos para acompañar cualquier momento del día. ☕🍵</p>
+
+            <div class="items-group">
+              <div class="items-group-title">Café Clásico</div>
+              <ul class="items-list">
+                <li>Americano</li>
+                <li>Espresso</li>
+                <li>Carajilla</li>
+                <li>Carajillo Sibara</li>
+                <li>Carajillo De Mazapan</li>
+              </ul>
+            </div>
+
+            <div class="items-group">
+              <div class="items-group-title">Chai</div>
+              <ul class="items-list">
+                <li>Chai Manzana Canela</li>
+                <li>Chai Vanilla Elefante</li>
+                <li>Chai Verde Tortuga</li>
+                <li>Chai Bengela</li>
+                <li>Chai Sin Azucar</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="photos-col">
+            <div class="photo-item">
+              <video autoplay muted loop playsinline>
+                <source src="Clasicos/tisanaaa.mp4" type="video/mp4" />
+              </video>
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="photo-item">
+              <img src="Clasicos/1.jpg" alt="Clásicos SIBARA" />
+              <div class="photo-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Sodas Italianas -->
+      <div id="tab-frias-sodas" class="tab-content">
+        <div class="sub-layout">
+          <div class="items-col">
+            <span class="section-label">Sodas Italianas</span>
+            <h2 class="section-title">Sodas Italianas</h2>
+            <div class="section-line"></div>
+            <p class="section-desc">Agua mineral con deliciosos jarabes frutales — ligera, burbujeante y perfecta para refrescarte en cualquier momento del día. 🥤🍓🍊</p>
+
+            <div class="items-group">
+              <ul class="items-list">
+                <li>Mora Azul</li><li>Lichi</li><li>Frambuesa</li>
+                <li>Mandaria</li><li>Mango</li><li>Zarzamora</li>
+                <li>Frutos Rojos</li><li>Pera</li><li>Piña</li>
+                <li>Sandia</li><li>Manzana</li><li>Maracuya</li>
+                <li>Grosella</li><li>Cereza Roja</li>
+              </ul>
+            </div>
+
+            <div class="prices-box">
+              <span class="prices-box-title">Tamaños</span>
+              <div class="prices-row">
+                <div class="price-item"><span class="price-size">Chico</span><span class="price-val">$55</span></div>
+                <div class="price-item"><span class="price-size">Grande</span><span class="price-val">$65</span></div>
+                <div class="price-item"><span class="price-size">Venti</span><span class="price-val">$65</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="photos-col three-up">
+            <div class="photo-item">
+              <img src="Sodas/1.jpg" alt="Sodas Italianas SIBARA" />
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="photo-item">
+              <img src="Sodas/2.jpg" alt="Sodas Italianas" />
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="photo-item">
+              <img src="Sodas/3.jpg" alt="Sodas Italianas variedad" />
+              <div class="photo-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Back button -->
+  <div style="text-align:center;padding:3rem 5%;">
+    <button onclick="goTo('page-menu')" style="font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;padding:0.9rem 2.5rem;border:1px solid rgba(184,134,11,0.4);background:transparent;color:var(--warm-gray);cursor:pointer;transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(184,134,11,0.4)';this.style.color='var(--warm-gray)'">
+      ← Volver al Menú
+    </button>
+  </div>
+
+  <section class="section-contact">
+    <span class="section-label">Encuéntranos</span>
+    <h2 class="section-title">Visítanos</h2>
+    <div class="contact-info">
+      <div class="contact-item"><span class="contact-label">Teléfono</span><span class="contact-value">331 067 5417</span></div>
+      <div class="contact-item"><span class="contact-label">Correo</span><span class="contact-value">sibara@gmail.com</span></div>
+      <div class="contact-item"><span class="contact-label">Instagram</span><span class="contact-value">@sibara_valle</span></div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ===================== BEBIDAS CALIENTES ===================== -->
+<div id="page-bebidas-calientes" class="page" style="display:none">
+
+  <section class="page-hero">
+    <span class="page-eyebrow">Menú — Bebidas Calientes</span>
+    <h1 class="page-title">Bebidas Calientes</h1>
+    <div class="page-line"></div>
+    <p class="page-desc">Nuestras bebidas calientes están preparadas con ingredientes de calidad y pensadas para brindar un momento de calidez y comodidad. Perfectas para relajarte y acompañar una conversación. ☕</p>
+  </section>
+
+  <section class="sub-section">
+    <div class="sub-inner">
+
+      <div class="tab-nav" id="tabs-calientes">
+        <button class="tab-btn active" onclick="switchTab('calientes','tizanas')">Tizanas</button>
+        <button class="tab-btn" onclick="switchTab('calientes','cappuchinos')">Cappuchinos &amp; Lattes</button>
+        <button class="tab-btn" onclick="switchTab('calientes','clasicos')">Clásicos &amp; Especiales</button>
+        <button class="tab-btn" onclick="switchTab('calientes','chocolates')">Chocolates</button>
+      </div>
+
+      <!-- TAB: Tizanas calientes -->
+      <div id="tab-calientes-tizanas" class="tab-content active">
+        <div class="sub-layout">
+          <div class="items-col">
+            <span class="section-label">Tizanas</span>
+            <h2 class="section-title">Tizanas</h2>
+            <div class="section-line"></div>
+            <p class="section-desc">Mezclas de frutas y aromas naturales. Perfectas frías o calientes para relajarte con un sabor suave y delicioso. 🍓🍵</p>
+            <div class="items-group">
+              <ul class="items-list">
+                <li>Amanecer</li><li>Maracuya</li><li>Fresa Kiwi</li>
+                <li>Fresa Mango</li><li>Serena Pasion</li><li>Moras</li>
+              </ul>
+            </div>
+            <div class="prices-box">
+              <span class="prices-box-title">Tamaños Calientes</span>
+              <div class="prices-row">
+                <div class="price-item"><span class="price-size">Chico</span><span class="price-val">$69</span></div>
+                <div class="price-item"><span class="price-size">Grande</span><span class="price-val">$79</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="photos-col">
+            <div class="photo-item">
+              <img src="Tinazas/1.jpg" alt="Tizanas calientes" />
+              <div class="photo-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Cappuchinos & Lattes -->
+      <div id="tab-calientes-cappuchinos" class="tab-content">
+        <div class="sub-layout">
+          <div class="items-col">
+            <span class="section-label">Cappuchinos &amp; Lattes</span>
+            <h2 class="section-title">Cappuchinos &amp; Lattes</h2>
+            <div class="section-line"></div>
+            <p class="section-desc">Preparados con café de calidad y leche cremosa, logrando un equilibrio perfecto entre sabor y suavidad. Ideales para comenzar el día o acompañar un momento de descanso. ☕</p>
+            <div class="items-group">
+              <ul class="items-list">
+                <li>Clasico</li><li>Caramelo</li><li>Nutella</li>
+                <li>Vanilla Francesa</li><li>Cookie Butter</li><li>Vanilla</li>
+                <li>Avellana</li><li>Rosas</li><li>Amarento</li>
+                <li>Mazapan</li><li>Crema Irlandesa</li><li>Bailyes</li>
+              </ul>
+            </div>
+          </div>
+          <div class="photos-col">
+            <div class="photo-item">
+              <img src="Clasicos/1.jpg" alt="Cappuccinos SIBARA" />
+              <div class="photo-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Clásicos & Especiales (calientes) -->
+      <div id="tab-calientes-clasicos" class="tab-content">
+        <div class="sub-layout">
+          <div class="items-col">
+            <span class="section-label">Clásicos &amp; Especiales</span>
+            <h2 class="section-title">Clásicos &amp; Especiales</h2>
+            <div class="section-line"></div>
+            <p class="section-desc">Desde el intenso espresso hasta el aromático chai — una bebida para cada momento del día. ☕🍵</p>
+            <div class="items-group">
+              <div class="items-group-title">Café Clásico</div>
+              <ul class="items-list">
+                <li>Americano</li><li>Espresso</li><li>Carajilla</li>
+                <li>Carajillo Sibara</li><li>Carajillo De Mazapan</li>
+              </ul>
+            </div>
+            <div class="items-group">
+              <div class="items-group-title">Chai</div>
+              <ul class="items-list">
+                <li>Chai Manzana Canela</li><li>Chai Vanilla Elefante</li>
+                <li>Chai Verde Tortuga</li><li>Chai Bengela</li><li>Chai Sin Azucar</li>
+              </ul>
+            </div>
+          </div>
+          <div class="photos-col">
+            <div class="photo-item">
+              <video autoplay muted loop playsinline>
+                <source src="tisanaaa.mp4" type="video/mp4" />
+              </video>
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="photo-item">
+              <img src="Clasicos/1.jpg" alt="Clásicos calientes" />
+              <div class="photo-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Chocolates (calientes) -->
+      <div id="tab-calientes-chocolates" class="tab-content">
+        <div class="sub-layout">
+          <div class="items-col">
+            <span class="section-label">Chocolates</span>
+            <h2 class="section-title">Chocolates</h2>
+            <div class="section-line"></div>
+            <p class="section-desc">Con sabor intenso y textura suave. Perfectos para un momento reconfortante. 🍫☕</p>
+            <div class="items-group">
+              <ul class="items-list">
+                <li>Chocolate Clasico</li><li>Chocolate Con Canela</li>
+                <li>Chocolate KitKat</li><li>Chocolate Belga</li>
+                <li>Chocolate Blanco</li><li>Chocolate Carlos V</li>
+              </ul>
+            </div>
+            <div class="prices-box">
+              <span class="prices-box-title">Tamaños Calientes</span>
+              <div class="prices-row">
+                <div class="price-item"><span class="price-size">Chico</span><span class="price-val">$69</span></div>
+                <div class="price-item"><span class="price-size">Grande</span><span class="price-val">$79</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="photos-col">
+            <div class="photo-item">
+              <img src="Clasicos/1.jpg" alt="Bebidas calientes SIBARA" />
+              <div class="photo-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div style="text-align:center;padding:3rem 5%;">
+    <button onclick="goTo('page-menu')" style="font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;padding:0.9rem 2.5rem;border:1px solid rgba(184,134,11,0.4);background:transparent;color:var(--warm-gray);cursor:pointer;transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(184,134,11,0.4)';this.style.color='var(--warm-gray)'">
+      ← Volver al Menú
+    </button>
+  </div>
+
+  <section class="section-contact">
+    <span class="section-label">Encuéntranos</span>
+    <h2 class="section-title">Visítanos</h2>
+    <div class="contact-info">
+      <div class="contact-item"><span class="contact-label">Teléfono</span><span class="contact-value">331 067 5417</span></div>
+      <div class="contact-item"><span class="contact-label">Correo</span><span class="contact-value">sibara@gmail.com</span></div>
+      <div class="contact-item"><span class="contact-label">Instagram</span><span class="contact-value">@sibara_valle</span></div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ===================== ALIMENTOS ===================== -->
+<div id="page-alimentos" class="page" style="display:none">
+
+  <section class="page-hero">
+    <span class="page-eyebrow">Menú — Alimentos</span>
+    <h1 class="page-title">Alimentos</h1>
+    <div class="page-line"></div>
+    <p class="page-desc">Acompaña tu bebida con nuestra variedad de panadería fresca — galletas, bagels, croissants y pastel. El complemento perfecto para hacer tu visita aún más especial. 🥐🍪🍰</p>
+  </section>
+
+  <section class="sub-section">
+    <div class="sub-inner">
+
+      <div class="tab-nav" id="tabs-alimentos">
+        <button class="tab-btn active" onclick="switchTab('alimentos','pastel')">Pastel</button>
+        <button class="tab-btn" onclick="switchTab('alimentos','bagels')">Bagels</button>
+        <button class="tab-btn" onclick="switchTab('alimentos','panaderia')">Panadería</button>
+      </div>
+
+      <!-- TAB: Pastel -->
+      <div id="tab-alimentos-pastel" class="tab-content active">
+        <div class="sub-layout">
+          <div class="items-col">
+            <span class="section-label">Pastel</span>
+            <h2 class="section-title">Pastel</h2>
+            <div class="section-line"></div>
+            <p class="section-desc">Deliciosas rebanadas de pastel con sabores suaves y textura esponjosa — el complemento perfecto para acompañar tu café. 🍰☕</p>
+            <div class="items-group">
+              <ul class="items-list">
+                <li>Oreo</li><li>Tiramisu</li><li>Lotos</li>
+                <li>Cheesecake</li><li>Tres Chocolates</li><li>Tortuga</li>
+              </ul>
+            </div>
+          </div>
+          <div class="photos-col three-up">
+            <div class="photo-item">
+              <img src="Pastel/1.jpg" alt="Pastel SIBARA" />
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="photo-item">
+              <img src="Pastel/2.jpg" alt="Rebanadas de pastel" />
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="photo-item">
+              <img src="Pastel/3.jpg" alt="Pastel variedad" />
+              <div class="photo-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Bagels -->
+      <div id="tab-alimentos-bagels" class="tab-content">
+        <div class="sub-layout">
+          <div class="items-col">
+            <span class="section-label">Bagels</span>
+            <h2 class="section-title">Bagels</h2>
+            <div class="section-line"></div>
+            <p class="section-desc">Con una textura suave por dentro y ligeramente tostada por fuera, ideales para disfrutar en cualquier momento del día. 🥯☕</p>
+            <div class="items-group">
+              <ul class="items-list">
+                <li>Jamon Serano</li><li>Jamon De Pavo</li><li>Jamon de Cerdo</li>
+                <li>Chorizo</li><li>Pechuga De Pavo</li><li>Salami</li>
+                <li>Rosbif</li><li>Salmon</li><li>Chocolate</li>
+              </ul>
+            </div>
+          </div>
+          <div class="photos-col">
+            <div class="photo-item">
+              <img src="Bagels/1.jpg" alt="Bagels SIBARA" />
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="photo-item">
+              <img src="Bagels/2.jpg" alt="Bagels variedad" />
+              <div class="photo-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Panadería -->
+      <div id="tab-alimentos-panaderia" class="tab-content">
+        <div class="sub-layout">
+          <div class="items-col">
+            <span class="section-label">Panadería</span>
+            <h2 class="section-title">Panadería Fresca</h2>
+            <div class="section-line"></div>
+            <p class="section-desc">Galletas, pan y muffins recién preparados — suaves, dulces y perfectos para acompañar tu bebida favorita. 🍪🧁🥖☕</p>
+            <div class="items-group">
+              <ul class="items-list">
+                <li>Role De Canella</li>
+                <li>Galletas</li>
+                <li>Cajita de Galletas</li>
+                <li>Muffins De Chocolate</li>
+              </ul>
+            </div>
+          </div>
+          <div class="photos-col four-up">
+            <div class="photo-item">
+              <img src="Panaderia/1.jpg" alt="Panadería SIBARA" />
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="photo-item">
+              <img src="Panaderia/2.jpg" alt="Galletas SIBARA" />
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="photo-item">
+              <img src="Panaderia/3.jpg" alt="Muffins SIBARA" />
+              <div class="photo-overlay"></div>
+            </div>
+            <div class="photo-item">
+              <img src="Panaderia/4.jpg" alt="Panadería variedad" />
+              <div class="photo-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div style="text-align:center;padding:3rem 5%;">
+    <button onclick="goTo('page-menu')" style="font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;padding:0.9rem 2.5rem;border:1px solid rgba(184,134,11,0.4);background:transparent;color:var(--warm-gray);cursor:pointer;transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(184,134,11,0.4)';this.style.color='var(--warm-gray)'">
+      ← Volver al Menú
+    </button>
+  </div>
+
+  <section class="section-contact">
+    <span class="section-label">Encuéntranos</span>
+    <h2 class="section-title">Visítanos</h2>
+    <div class="contact-info">
+      <div class="contact-item"><span class="contact-label">Teléfono</span><span class="contact-value">331 067 5417</span></div>
+      <div class="contact-item"><span class="contact-label">Correo</span><span class="contact-value">sibara@gmail.com</span></div>
+      <div class="contact-item"><span class="contact-label">Instagram</span><span class="contact-value">@sibara_valle</span></div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ===== FOOTER (global) ===== -->
+<footer>
+  <div class="footer-brand">SIBARA</div>
+  <div class="footer-sub">Cafe De Altura</div>
+  <ul class="footer-nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="menu.html">Menú</a></li>
+  </ul>
+  <p class="footer-copy">&copy; 2026 SIBARA Cafe De Altura — Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  /* ---- Navbar ---- */
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.style.padding = window.scrollY > 60 ? '0.8rem 5%' : '1.2rem 5%';
+  });
+
+  /* ---- SPA page router ---- */
+  function goTo(id) {
+    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* ---- Tab switcher ---- */
+  function switchTab(group, tab) {
+    // Deactivate all buttons in this group
+    document.querySelectorAll(`#tabs-${group} .tab-btn`).forEach(b => b.classList.remove('active'));
+    // Find and activate clicked button
+    event.target.classList.add('active');
+    // Hide all tab contents for this group
+    document.querySelectorAll(`[id^="tab-${group}-"]`).forEach(t => {
+      t.classList.remove('active');
+    });
+    // Show selected
+    const target = document.getElementById(`tab-${group}-${tab}`);
+    if (target) target.classList.add('active');
+  }
+</script>
+</body>
+</html>
